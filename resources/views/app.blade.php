@@ -14,20 +14,20 @@
             <ul class="app-navbar__list">
                 @guest
                 <li>
-                    <a href="/signin">Signin</a>
+                    <a href="#">Signin</a>
                 </li>
                 <li>
-                    <a href="/signup">Signup</a>
+                    <a href="{{ route('signup') }}">Signup</a>
                 </li>
                 @endguest
 
                 @auth
                   <li>
-                   <a href="/">Home</a>
+                   <a href="{{ route('home') }}">Home</a>
                   </li>
 
                   <li>
-                     <button type="submit" class="btn btn-link btn-logout">Signout</button>
+                      <a href="{{ route('home') }}">Signout</a>
                   </li>
                 @endauth
             </ul>
