@@ -14,7 +14,7 @@
             <ul class="app-navbar__list">
                 @guest
                 <li>
-                    <a href="#">Signin</a>
+                    <a href="{{ route('signin') }}">Signin</a>
                 </li>
                 <li>
                     <a href="{{ route('signup') }}">Signup</a>
@@ -27,7 +27,10 @@
                   </li>
 
                   <li>
-                      <a href="{{ route('home') }}">Signout</a>
+                      <form class="d-inline" method="POST" action="#">
+                          <button type="submit" class="btn btn-link btn-logout">Signout</button>
+                          @csrf
+                      </form>
                   </li>
                 @endauth
             </ul>
