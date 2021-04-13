@@ -27,7 +27,7 @@
                   </li>
 
                   <li>
-                      <form class="d-inline" method="POST" action="#">
+                      <form class="d-inline" method="POST" action="{{route('signout')}}">
                           <button type="submit" class="btn btn-link btn-logout">Signout</button>
                           @csrf
                       </form>

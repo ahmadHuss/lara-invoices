@@ -26,3 +26,5 @@ Route::post('signup', [SignupController::class, 'store']);
 
 Route::get('signin', [SigninController::class, 'create'])->name('signin');
 Route::post('signin', [SigninController::class, 'store']);
+
+Route::post('signout', [SignoutController::class,'store'])->name('signout');
