@@ -7,7 +7,7 @@ body {
     border-bottom: 1px solid #eee;
     padding: 8px 0;
 
-    position: fixed;
+    position: sticky;
     top: 0;
     right: 0;
     left: 0;
@@ -61,7 +61,8 @@ body {
 .app-section {
     display: flex;
     align-items: center;
-    padding: 40px 0;
+    padding-top: 40px;
+    padding-bottom: 40px;
     min-height: 100vh;
 }
 
@@ -70,7 +71,7 @@ body {
     width: 100%;
     max-width: 780px;
     padding: 14px;
-    margin: auto;
+    margin: 0 auto;
 }
 
 
@@ -79,12 +80,6 @@ body {
     background-color: #fff;
     border-top: 1px solid #eee;
     padding: 24px 0;
-
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1030;
 }
 
 .footer--combo {
