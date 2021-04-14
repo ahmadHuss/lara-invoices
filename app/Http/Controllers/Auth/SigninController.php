@@ -22,7 +22,7 @@ class SigninController extends Controller
     public function store(StoreSigninRequest $request){
         // After validation
         // Send crediting to match with database
-        if (auth()->attempt($request->only('email', 'password'))) {
+        if (auth()->attempt($request->only('email', 'password'), $request->remember)) {
             return redirect()->route('home');
         } else {
             return back()->with('status', 'Invalid login details.');

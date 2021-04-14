@@ -24,6 +24,16 @@
                 @enderror
             </div>
 
+            {{-- When you dd($request->remember) returns "ok" if not return null --}}
+            <div class="mb-2">
+                <div class="form-check">
+                    <input class="form-check-input" name="remember" type="checkbox" id="remember">
+                    <label class="form-check-label" for="remember">
+                       Remember me
+                    </label>
+                </div>
+            </div>
+
             <button type="submit" class="btn btn-primary">Submit</button>
             @csrf
         </form>
