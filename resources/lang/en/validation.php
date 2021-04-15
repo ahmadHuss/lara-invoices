@@ -134,8 +134,18 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        // Customer
+        'customer.name' => [
+            'required' => 'The customer name field is required.',
+        ],
+        'customer.address' => [
+            'required' => 'The customer address field is required.',
+        ],
+        'customer.country' => [
+            'required' => 'The customer country field is required.',
+        ],
+        'customer.city' => [
+            'required' => 'The customer city field is required.',
         ],
     ],
 
