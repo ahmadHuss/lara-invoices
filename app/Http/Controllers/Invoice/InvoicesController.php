@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Invoice;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreInvoiceRequest;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
 class InvoicesController extends Controller
@@ -28,9 +30,10 @@ class InvoicesController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(StoreInvoiceRequest $request): string
     {
-
+       Customer::create($request->customer);
+       return 'to be continued';
     }
 
     /**
