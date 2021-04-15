@@ -32,7 +32,7 @@
                     {{-- Fields --}}
                      <div class="mb-4">
                          <label for="customer.name">Name *:</label>
-                         <input type="text" name="customer[name]" class="form-control @error('customer.name') is-invalid @enderror" id="customer.name">
+                         <input type="text" name="customer[name]" class="form-control @error('customer.name') is-invalid @enderror" id="customer.name" value="{{ old('customer.name') }}">
                          @error('customer.name')
                          <div class="invalid-feedback">{{ $message }}</div>
                          @enderror
@@ -40,7 +40,7 @@
 
                      <div class="mb-4">
                          <label for="customer.address">Address *:</label>
-                         <input type="text" name="customer[address]" class="form-control @error('customer.address') is-invalid @enderror" id="customer.address">
+                         <input type="text" name="customer[address]" class="form-control @error('customer.address') is-invalid @enderror" id="customer.address" value="{{ old('customer.address') }}">
                          @error('customer.address')
                          <div class="invalid-feedback">{{ $message }}</div>
                          @enderror
@@ -48,7 +48,7 @@
 
                      <div class="mb-4">
                          <label for="customer.country">Country *:</label>
-                         <input type="text" name="customer[country]" class="form-control @error('customer.country') is-invalid @enderror" id="customer.country">
+                         <input type="text" name="customer[country]" class="form-control @error('customer.country') is-invalid @enderror" id="customer.country" value="{{ old('customer.country') }}">
                          @error('customer.country')
                          <div class="invalid-feedback">{{ $message }}</div>
                          @enderror
@@ -56,7 +56,7 @@
 
                      <div class="mb-4">
                          <label for="customer.city">City *:</label>
-                         <input type="text" name="customer[city]" class="form-control @error('customer.city') is-invalid @enderror" id="customer.city">
+                         <input type="text" name="customer[city]" class="form-control @error('customer.city') is-invalid @enderror" id="customer.city" value="{{ old('customer.city') }}">
                          @error('customer.city')
                          <div class="invalid-feedback">{{ $message }}</div>
                          @enderror
@@ -64,7 +64,7 @@
 
                      <div class="mb-4">
                          <label for="customer.state">State:</label>
-                         <input type="text" name="customer[state]" class="form-control @error('customer.state') is-invalid @enderror" id="customer.state">
+                         <input type="text" name="customer[state]" class="form-control @error('customer.state') is-invalid @enderror" id="customer.state" value="{{ old('customer.state') }}">
                          @error('customer.state')
                          <div class="invalid-feedback">{{ $message }}</div>
                          @enderror
@@ -72,7 +72,7 @@
 
                      <div class="mb-4">
                          <label for="customer.postcode">Postcode/ZIP:</label>
-                         <input type="text" name="customer[postcode]" class="form-control @error('customer.postcode') is-invalid @enderror" id="customer.postcode">
+                         <input type="text" name="customer[postcode]" class="form-control @error('customer.postcode') is-invalid @enderror" id="customer.postcode" value="{{ old('customer.postcode') }}">
                          @error('customer.postcode')
                          <div class="invalid-feedback">{{ $message }}</div>
                          @enderror
@@ -80,7 +80,7 @@
 
                      <div class="mb-4">
                          <label for="customer.phone">Phone:</label>
-                         <input type="text" name="customer[phone]" class="form-control @error('customer.phone') is-invalid @enderror" id="customer.phone">
+                         <input type="text" name="customer[phone]" class="form-control @error('customer.phone') is-invalid @enderror" id="customer.phone" value="{{ old('customer.phone') }}">
                          @error('customer.phone')
                              <div class="invalid-feedback">{{ $message }}</div>
                          @enderror
@@ -88,7 +88,7 @@
 
                      <div class="mb-4">
                          <label for="customer.email">Email:</label>
-                         <input type="email" name="customer[email]" class="form-control @error('customer.email') is-invalid @enderror" id="customer.email">
+                         <input type="email" name="customer[email]" class="form-control @error('customer.email') is-invalid @enderror" id="customer.email" value="{{ old('customer.email') }}">
                          @error('customer.email')
                          <div class="invalid-feedback">{{ $message }}</div>
                          @enderror
