@@ -112,7 +112,7 @@
                                      <input type="text" name="customer_fields[{{ $i }}][field_key]" class="form-control">
                                  </td>
                                  <td>
-                                     <input type="text" name="customer_fields[{{ $i }}][field_key]" class="form-control">
+                                     <input type="text" name="customer_fields[{{ $i }}][field_value]" class="form-control">
                                  </td>
                              </tr>
                              @endfor
