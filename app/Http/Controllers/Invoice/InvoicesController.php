@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreInvoiceRequest;
 use App\Models\Customer;
 use App\Models\Invoice;
+use App\Models\InvoicesItem;
 use Illuminate\Http\Request;
 
 class InvoicesController extends Controller
@@ -33,9 +34,23 @@ class InvoicesController extends Controller
 
     public function store(StoreInvoiceRequest $request): string
     {
+      // Get customer
       $customer = Customer::create($request->customer);
+      // Get Invoice
       // It will combine into an array and saved inside the database.
-      Invoice::create($request->invoice + ['customer_id' => $customer->id]);
+      $invoice = Invoice::create($request->invoice + ['customer_id' => $customer->id]);
+      // Save invoices_item inside invoices_items table
+       for ($i = 0; $i < count($request->product); $i++) {
+           // Array check whether a variable is set and is not NULL.
+            if (isset($request->quantity[$i]) && isset($request->price[$i])) {
+                InvoicesItem::create([
+                    'invoice_id' => $invoice->id,
+                    'name' => $request->product[$i],
+                    'quantity' => $request->quantity[$i],
+                    'price' => $request->price[$i]
+                ]);
+            }
+       }
        return 'to be continued';
     }
 
