@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Invoice;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreInvoiceRequest;
 use App\Models\Customer;
+use App\Models\Invoice;
 use Illuminate\Http\Request;
 
 class InvoicesController extends Controller
@@ -32,7 +33,9 @@ class InvoicesController extends Controller
 
     public function store(StoreInvoiceRequest $request): string
     {
-       Customer::create($request->customer);
+      $customer = Customer::create($request->customer);
+      // It will combine into an array and saved inside the database.
+      Invoice::create($request->invoice + ['customer_id' => $customer->id]);
        return 'to be continued';
     }
 
