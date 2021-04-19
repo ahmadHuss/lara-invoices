@@ -15,6 +15,15 @@ class CreateCustomersFieldsTable extends Migration
     {
         Schema::create('customers_fields', function (Blueprint $table) {
             $table->id();
+
+            $table->string('field_key');
+            $table->string('field_value');
+
+            // Famous 2 lines foreign key
+            $table->unsignedBigInteger('customer_id');
+            $table->foreign('customer_id')->references('id')->on('customers');
+
+
             $table->timestamps();
         });
     }
