@@ -6,18 +6,18 @@
             <div class="row">
                 <div class="col">
                     <label for="invoice_number">Invoice number *:</label>
-                    <input type="text" class="form-control @error('invoice_number') is-invalid @enderror"
-                           placeholder="A0100" id="invoice_number" required>
-                    @error('invoice_number')
+                    <input type="text" name="invoice[invoice_number]" class="form-control @error('invoice.invoice_number') is-invalid @enderror"
+                           placeholder="A0100" id="invoice_number" value="{{ old('invoice.invoice_number') }}">
+                    @error('invoice.invoice_number')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
                 <div class="col">
                     <label for="invoice_date">Invoice date *:</label>
-                    <input type="text" class="form-control @error('invoice_date') is-invalid @enderror"
-                           placeholder="{{ date('Y-m-d') }}" value="{{ date('Y-m-d') }}" id="invoice_date" required>
-                    @error('invoice_date')
+                    <input type="text" name="invoice[invoice_date]" class="form-control @error('invoice.invoice_date') is-invalid @enderror"
+                           placeholder="{{ date('Y-m-d') }}" value="{{ old('invoice.invoice_date') ? old('invoice.invoice_date') : date('Y-m-d')}}" id="invoice_date">
+                    @error('invoice.invoice_date')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
@@ -190,9 +190,12 @@
                             <th>Tax</th>
                             <td>
                                 <div class="input-group">
-                                    <input type="text" class="form-control" id="tax">
+                                    <input type="text" name="invoice[tax_percent]" class="form-control @error('invoice.tax_percent') is-invalid @enderror" placeholder="0" value="{{ old('invoice.tax_percent') ? old('invoice.tax_percent') : '0' }}" id="tax">
                                     <span class="input-group-text">%</span>
                                 </div>
+                                @error('invoice.tax_percent')
+                                    <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
                             </td>
                         </tr>
                         <tr>
