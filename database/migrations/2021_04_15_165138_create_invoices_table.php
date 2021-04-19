@@ -15,6 +15,16 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
+            $table->string('invoice_number');
+            $table->date('invoice_date');
+
+            // Foreign key customer id
+            $table->unsignedBigInteger('customer_id');
+            $table->foreign('customer_id')->references('id')->on('customers');
+
+            // Tax percentage always save prices in decimal not float
+            $table->decimal('tax_percent')->default(0);
+
             $table->timestamps();
         });
     }
