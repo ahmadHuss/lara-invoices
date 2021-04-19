@@ -152,14 +152,17 @@
                             <tr id="addr0">
                                 <th scope="row">1</th>
                                 <td>
-                                    <input type="text" class="form-control" placeholder="Enter Product Name">
+                                     {{--  We have enter the name value as an array because users can create can multiple rows of same
+                                        fields, So when we save inside the database we store the multiple rows.
+                                      --}}
+                                    <input type="text" name="product[]" class="form-control @error('product.0') is-invalid @enderror" placeholder="Enter Product Name">
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control qty" placeholder="Enter Quantity">
+                                    <input type="text" name="quantity[]" class="form-control qty @error('quantity.0') is-invalid @enderror" placeholder="Enter Quantity">
                                 </td>
 
                                 <td>
-                                    <input type="text" class="form-control price" placeholder="Enter Unit Price">
+                                    <input type="text" name="price[]" class="form-control price @error('price.0') is-invalid @enderror" placeholder="Enter Unit Price">
                                 </td>
 
                                 <td>
