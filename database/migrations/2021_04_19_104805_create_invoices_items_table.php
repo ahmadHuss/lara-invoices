@@ -15,6 +15,13 @@ class CreateInvoicesItemsTable extends Migration
     {
         Schema::create('invoices_items', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->decimal('quantity');
+            $table->decimal('price');
+            // Famous 2 lines for foreign key creation
+            $table->unsignedBigInteger('invoice_id');
+            $table->foreign('invoice_id')->references('id')->on('invoices');
+
             $table->timestamps();
         });
     }
