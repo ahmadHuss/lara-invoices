@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Invoice;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreInvoiceRequest;
 use App\Models\Customer;
+use App\Models\CustomersField;
 use App\Models\Invoice;
 use App\Models\InvoicesItem;
 use Illuminate\Http\Request;
@@ -36,6 +37,20 @@ class InvoicesController extends Controller
     {
       // Get customer
       $customer = Customer::create($request->customer);
+
+      // Additional fields optional stored inside the database
+        for ($i = 0; $i < count($request->customer_fields); $i++) {
+            // Array check whether a variable is set and is not NULL.
+            if (isset($request->customer_fields[$i]['field_key']) && isset($request->customer_fields[$i]['field_value'])) {
+                CustomersField::create([
+                    'customer_id' => $customer->id,
+                    'field_key' => $request->customer_fields[$i]['field_key'],
+                    'field_value' => $request->customer_fields[$i]['field_value']
+                ]);
+            }
+        }
+
+
       // Get Invoice
       // It will combine into an array and saved inside the database.
       $invoice = Invoice::create($request->invoice + ['customer_id' => $customer->id]);
