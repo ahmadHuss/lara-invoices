@@ -147,6 +147,25 @@ return [
         'customer.city' => [
             'required' => 'The customer city field is required.',
         ],
+
+        // Invoice
+        /**
+          'invoice' => [
+         'invoice_number' => [
+              'required' => 'The invoice number field is required.',
+         ]
+         ]
+         */
+        'invoice.invoice_number' => [
+            'required' => 'The invoice number field is required.',
+        ],
+        'invoice.invoice_date' => [
+            'required' => 'The invoice date field is required.',
+            'date' => 'The invoice date is not a valid date.',
+        ],
+        'invoice.tax_percent' => [
+            'numeric' => 'The tax percent must be a number.',
+        ],
     ],
 
     /*

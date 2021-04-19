@@ -29,6 +29,11 @@ class StoreInvoiceRequest extends FormRequest
             'customer.address' => 'required',
             'customer.country' => 'required',
             'customer.city' => 'required',
+            // invoice
+            'invoice.invoice_number' => 'required',
+            'invoice.invoice_date' => 'required|date',
+            'invoice.tax_percent' => 'numeric' // I didn't enter the `required` flag because database
+            // will add the default value to 0
         ];
     }
 }
