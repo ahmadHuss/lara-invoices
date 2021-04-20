@@ -7,6 +7,26 @@
         <div>
             <a href="{{ route('invoices.create') }}" class="btn btn-primary">Create Invoice</a>
         </div>
+
+        {{-- Responsive Tables --}}
+        <div class="table-responsive mt-5">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Invoice Date</th>
+                        <th>Invoice Number</th>
+                        <th>Customer</th>
+                        <th>Total Amount</th>
+                    </tr>
+                    @foreach($invoices as $invoice)
+                        <tr>
+                            <td>{{ $invoice->invoice_date }}</td>
+                            <td>{{ $invoice->invoice_number }}</td>
+                            <td>{{ $invoice->customer->name }}</td>
+                            <td>0</td>
+                        </tr>
+                    @endforeach
+                </table>
+        </div>
         @endauth
     </div>
 @endsection
