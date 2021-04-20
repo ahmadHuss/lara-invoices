@@ -16,4 +16,9 @@ class Invoice extends Model
         // Customer::class must return a relationship instance
         return $this->belongsTo(Customer::class);
     }
+
+    // Mutator
+    public function getTotalAmountAttribute() {
+        return 1;
+    }
 }
