@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Auth\SigninController;
 use App\Http\Controllers\Auth\SignoutController;
 use App\Http\Controllers\Auth\SignupController;
@@ -17,9 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Auth routes
 Route::get('signup', [SignupController::class, 'create'])->name('signup');
