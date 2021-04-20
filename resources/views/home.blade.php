@@ -16,6 +16,7 @@
                         <th>Invoice Number</th>
                         <th>Customer</th>
                         <th>Total Amount</th>
+                        <th></th>
                     </tr>
                     @foreach($invoices as $invoice)
                         <tr>
@@ -23,6 +24,9 @@
                             <td>{{ $invoice->invoice_number }}</td>
                             <td>{{ $invoice->customer->name }}</td>
                             <td>{{ number_format($invoice->total_amount, 2) }}</td>
+                            <td>
+                                <a href="{{ route('invoices.show', $invoice->id) }}" class="btn btn-primary">View Invoice</a>
+                            </td>
                         </tr>
                     @endforeach
                 </table>
