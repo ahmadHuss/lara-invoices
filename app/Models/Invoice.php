@@ -17,8 +17,19 @@ class Invoice extends Model
         return $this->belongsTo(Customer::class);
     }
 
+
+    // invoices_items will be hasMany 1 to M relation => 1invoice can have many items
+    public function invoices_items() {
+        return $this->hasMany(InvoicesItem::class);
+    }
+
     // Mutator
     public function getTotalAmountAttribute() {
-        return 1;
+        $totalAmount = 0;
+        // We have to create the 1:M relation with the Invoice Model
+        foreach ($this->invoices_items as $item) {
+            $totalAmount +=  $item->price * $item->quantity;
+        }
+        return $totalAmount;
     }
 }

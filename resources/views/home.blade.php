@@ -22,7 +22,7 @@
                             <td>{{ $invoice->invoice_date }}</td>
                             <td>{{ $invoice->invoice_number }}</td>
                             <td>{{ $invoice->customer->name }}</td>
-                            <td>{{ $invoice->total_amount }}</td>
+                            <td>{{ number_format($invoice->total_amount, 2) }}</td>
                         </tr>
                     @endforeach
                 </table>
