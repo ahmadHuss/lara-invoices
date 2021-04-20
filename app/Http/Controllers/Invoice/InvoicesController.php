@@ -69,15 +69,11 @@ class InvoicesController extends Controller
        return 'to be continued';
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+
+    public function show($invoice_id)
     {
-        //
+       $invoice = Invoice::findOrFail($invoice_id);
+       return view('invoices.show', compact('invoice'));
     }
 
     /**
