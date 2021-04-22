@@ -1,5 +1,12 @@
 @extends('app')
 @section('section')
+
+       @if(config('invoices.logo_file') !== '')
+        <div class="text-center mb-4">
+            <img src="{{config('invoices.logo_file')}}"  alt="Seller Logo" />
+        </div>
+       @endif
+
     <h4 class="text-center">Invoice number {{ $invoice->invoice_number }}</h4>
     <h4 class="text-center">{{ $invoice->invoice_date }}</h4>
 
@@ -46,10 +53,17 @@
 
                 <div class="col-md-4 offset-md-4">
                     <h4 class="mt-3">Seller Details</h4>
-                    <p>Your company name</p>
-                    <p>1 Street Name, Lahore, Pakistan</p>
-                    <p>Email: xxxxx@company.com</p>
-                    <p>VAT Number: xx xxxxxxx xxxx</p>
+                    <p>From: {{ config('invoices.seller.name') }}</p>
+                    <p>Address: {{ config('invoices.seller.address') }}</p>
+                    @if (config('invoices.seller.email') !== '')
+                        <p>Email: {{ config('invoices.seller.email') }}</p>
+                    @endif
+                    {{-- The is_array() function checks whether a variable is an array or not. --}}
+                    @if(is_array(config('invoices.seller.additional_info')))
+                        @foreach(config('invoices.seller.additional_info') as $key => $value)
+                            <p>{{ $key }}: {{ $value }}</p>
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>
@@ -101,4 +115,9 @@
             </tr>
         </table>
     </div>
+
+    {{--  Seller Footer text --}}
+    <p class="text-center mt-3">
+        {{ config('invoices.footer_text') }}
+    </p>
 @endsection
