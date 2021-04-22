@@ -23,7 +23,7 @@ class Invoice extends Model
         return $this->hasMany(InvoicesItem::class);
     }
 
-    // Mutator
+    // Mutator Attributes:
     public function getTotalAmountAttribute() {
         $totalAmount = 0;
         // We have to create the 1:M relation with the Invoice Model
