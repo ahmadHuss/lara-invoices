@@ -8,6 +8,7 @@ use App\Models\Customer;
 use App\Models\CustomersField;
 use App\Models\Invoice;
 use App\Models\InvoicesItem;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 
 class InvoicesController extends Controller
@@ -54,7 +55,8 @@ class InvoicesController extends Controller
       // Get Invoice
       // It will combine into an array and saved inside the database.
       $invoice = Invoice::create($request->invoice + ['customer_id' => $customer->id]);
-      // Save invoices_item inside invoices_items table
+
+        // Save invoices_item inside invoices_items table
        for ($i = 0; $i < count($request->product); $i++) {
            // Array check whether a variable is set and is not NULL.
             if (isset($request->quantity[$i]) && isset($request->price[$i])) {
@@ -74,6 +76,16 @@ class InvoicesController extends Controller
     {
        $invoice = Invoice::findOrFail($invoice_id);
        return view('invoices.show', compact('invoice'));
+    }
+
+
+
+    public function download($invoice_id) {
+        $invoice = Invoice::findOrFail($invoice_id);
+        // loadView('invoices/pdf.blade.php') is the blade file we have to fill with the Email template HTML.
+        $pdf = PDF::loadView('invoices.pdf', compact('invoice'));
+        $filename = 'Invoice'.'-'.date('D-M-Y').'-'.time().'.pdf';
+        return $pdf->download($filename);
     }
 
     /**
