@@ -228,7 +228,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        // Third party package Facade
+        // Third party package (use Barryvdh\DomPDF\Facade as PDF;)
         'PDF' => Barryvdh\DomPDF\Facade::class
     ],
 
