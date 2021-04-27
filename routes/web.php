@@ -32,4 +32,6 @@ Route::post('signout', [SignoutController::class,'store'])->name('signout');
 // Invoices group protected by route middleware
 Route::middleware(['auth'])->group(function () {
     Route::resource('invoices', InvoicesController::class);
+    Route::get('invoices/{invoice_id}/download', [InvoicesController::class, 'download'])
+        ->name('invoices.download');
 });
