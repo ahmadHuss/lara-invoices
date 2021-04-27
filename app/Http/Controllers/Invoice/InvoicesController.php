@@ -16,14 +16,16 @@ class InvoicesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
+
     public function index()
     {
-        //
+        return redirect()->route('home');
     }
 
     /**
+     * 👌
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -34,6 +36,11 @@ class InvoicesController extends Controller
     }
 
 
+    /**
+     * 👌
+     * Process the form
+     *
+     */
     public function store(StoreInvoiceRequest $request): string
     {
       // Get customer
@@ -72,6 +79,11 @@ class InvoicesController extends Controller
     }
 
 
+    /**
+     * 👌
+     * Show the details
+     *
+     */
     public function show($invoice_id)
     {
        $invoice = Invoice::findOrFail($invoice_id);
@@ -80,6 +92,11 @@ class InvoicesController extends Controller
 
 
 
+    /**
+     * 👌
+     * Download the invoice
+     *
+     */
     public function download($invoice_id) {
         $invoice = Invoice::findOrFail($invoice_id);
         // loadView('invoices/pdf.blade.php') is the blade file we have to fill with the Email template HTML.
@@ -92,11 +109,11 @@ class InvoicesController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function edit($id)
     {
-        //
+        return redirect()->route('home');
     }
 
     /**
@@ -104,21 +121,21 @@ class InvoicesController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
-        //
+        return redirect()->route('home');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
-        //
+        return redirect()->route('home');
     }
 }
