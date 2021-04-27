@@ -70,27 +70,29 @@
     </div>
 
     {{--  Table for Invoices_items  --}}
-    <div class="table-responsive mt-5">
-        <table class="table table-bordered">
-            <tr>
-                <th>#</th>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Price</th>
-                <th>Total</th>
-            </tr>
-            {{--  Because of hasMany Relationship --}}
-            @foreach($invoice->invoices_items as $item)
+    @if (count($invoice->invoices_items) > 0)
+        <div class="table-responsive mt-5">
+            <table class="table table-bordered">
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $item->name }}</td>
-                    <td>{{ number_format($item->quantity) }}</td>
-                    <td>{{ $item->price }}</td>
-                    <td>{{ number_format($item->quantity * $item->price, 2) }}</td>
+                    <th>#</th>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
                 </tr>
-            @endforeach
-        </table>
-    </div>
+                {{--  Because of hasMany Relationship --}}
+                @foreach($invoice->invoices_items as $item)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $item->name }}</td>
+                        <td>{{ number_format($item->quantity) }}</td>
+                        <td>{{ $item->price }}</td>
+                        <td>{{ number_format($item->quantity * $item->price, 2) }}</td>
+                    </tr>
+                @endforeach
+            </table>
+        </div>
+    @endif
 
 
 
