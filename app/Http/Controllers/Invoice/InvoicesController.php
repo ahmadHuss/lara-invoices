@@ -68,7 +68,7 @@ class InvoicesController extends Controller
                 ]);
             }
        }
-       return 'to be continued';
+       return redirect()->route('home');
     }
 
 
