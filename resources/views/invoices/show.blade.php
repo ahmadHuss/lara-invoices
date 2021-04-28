@@ -1,6 +1,6 @@
 @extends('app')
 @section('section')
-
+    <div class="app-box" style="max-width: 876px;">
        @if(config('invoices.logo_file') !== '')
         <div class="text-center mb-4">
             <img src="{{config('invoices.logo_file')}}"  alt="Seller Logo" />
@@ -122,4 +122,5 @@
     <p class="text-center mt-3">
         {{ config('invoices.footer_text') }}
     </p>
+  </div>
 @endsection

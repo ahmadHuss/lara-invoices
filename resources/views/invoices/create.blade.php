@@ -1,5 +1,6 @@
 @extends('app')
 @section('section')
+    <div class="app-box" style="max-width: 876px;">
         <h1>Create your invoice</h1>
         <form action="{{ route('invoices.store') }}" method="POST">
             {{--  Portion 1   --}}
@@ -217,6 +218,7 @@
             <button type="submit" class="btn btn-primary mt-4">Save Invoice</button>
             @csrf
         </form>
+    </div>
 @endsection
 
 @section('javascript')

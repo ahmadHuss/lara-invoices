@@ -37,9 +37,7 @@
         </div>
     </nav>
     <div class="app-section">
-        <div class="app-box">
-            @yield('section')
-        </div>
+        @yield('section')
     </div>
     <footer class="footer">
         <div class="footer--combo container--static">
