@@ -27,6 +27,10 @@
                   </li>
 
                   <li>
+                     <a href="{{ route('customers.index') }}">Customers</a>
+                  </li>
+
+                  <li>
                       <form class="d-inline" method="POST" action="{{route('signout')}}">
                           <button type="submit" class="btn btn-link btn-logout">Signout</button>
                           @csrf
