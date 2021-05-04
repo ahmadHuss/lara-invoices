@@ -163,6 +163,9 @@ return [
             'required' => 'The invoice date field is required.',
             'date' => 'The invoice date is not a valid date.',
         ],
+        'invoice.customer_id' => [
+            'required' => 'The customer field is required.',
+        ],
         'invoice.tax_percent' => [
             'numeric' => 'The tax percent must be a number.',
         ],
