@@ -25,102 +25,24 @@
             </div>
 
             {{--  Portion 2   --}}
+            @if(count($customers) > 0)
             <div class="row mb-4">
-
                 {{-- Customer Details --}}
                  <div class="col">
                      <h4 class="mt-3">Customer Details</h4>
-                    {{-- Fields --}}
                      <div class="mb-4">
-                         <label for="customer.name">Name *:</label>
-                         <input type="text" name="customer[name]" class="form-control @error('customer.name') is-invalid @enderror" id="customer.name" value="{{ old('customer.name') }}">
-                         @error('customer.name')
-                         <div class="invalid-feedback">{{ $message }}</div>
-                         @enderror
-                     </div>
-
-                     <div class="mb-4">
-                         <label for="customer.address">Address *:</label>
-                         <input type="text" name="customer[address]" class="form-control @error('customer.address') is-invalid @enderror" id="customer.address" value="{{ old('customer.address') }}">
-                         @error('customer.address')
-                         <div class="invalid-feedback">{{ $message }}</div>
-                         @enderror
-                     </div>
-
-                     <div class="mb-4">
-                         <label for="customer.country">Country *:</label>
-                         <input type="text" name="customer[country]" class="form-control @error('customer.country') is-invalid @enderror" id="customer.country" value="{{ old('customer.country') }}">
-                         @error('customer.country')
-                         <div class="invalid-feedback">{{ $message }}</div>
-                         @enderror
-                     </div>
-
-                     <div class="mb-4">
-                         <label for="customer.city">City *:</label>
-                         <input type="text" name="customer[city]" class="form-control @error('customer.city') is-invalid @enderror" id="customer.city" value="{{ old('customer.city') }}">
-                         @error('customer.city')
-                         <div class="invalid-feedback">{{ $message }}</div>
-                         @enderror
-                     </div>
-
-                     <div class="mb-4">
-                         <label for="customer.state">State:</label>
-                         <input type="text" name="customer[state]" class="form-control @error('customer.state') is-invalid @enderror" id="customer.state" value="{{ old('customer.state') }}">
-                         @error('customer.state')
-                         <div class="invalid-feedback">{{ $message }}</div>
-                         @enderror
-                     </div>
-
-                     <div class="mb-4">
-                         <label for="customer.postcode">Postcode/ZIP:</label>
-                         <input type="text" name="customer[postcode]" class="form-control @error('customer.postcode') is-invalid @enderror" id="customer.postcode" value="{{ old('customer.postcode') }}">
-                         @error('customer.postcode')
-                         <div class="invalid-feedback">{{ $message }}</div>
-                         @enderror
-                     </div>
-
-                     <div class="mb-4">
-                         <label for="customer.phone">Phone:</label>
-                         <input type="text" name="customer[phone]" class="form-control @error('customer.phone') is-invalid @enderror" id="customer.phone" value="{{ old('customer.phone') }}">
-                         @error('customer.phone')
+                        <select class="form-select @error('invoice.customer_id') is-invalid @enderror" name="invoice[customer_id]">
+                            <option disabled @if(old('invoice.customer_id') === null) selected @endif>Choose a customer</option>
+                            @foreach($customers as $customer)
+                               <option value="{{ $customer->id }}" @if($customer->id === (int) old('invoice.customer_id')) selected @endif>
+                                   {{ $customer->name }}
+                               </option>
+                             @endforeach
+                         </select>
+                         @error('invoice.customer_id')
                              <div class="invalid-feedback">{{ $message }}</div>
                          @enderror
                      </div>
-
-                     <div class="mb-4">
-                         <label for="customer.email">Email:</label>
-                         <input type="email" name="customer[email]" class="form-control @error('customer.email') is-invalid @enderror" id="customer.email" value="{{ old('customer.email') }}">
-                         @error('customer.email')
-                         <div class="invalid-feedback">{{ $message }}</div>
-                         @enderror
-                     </div>
-
-
-                    {{-- Tables Additional Fields --}}
-                     <p>Additional Fields <small>(optional):</small></p>
-                     <div class="table-responsive">
-                         <table class="table table-bordered">
-                             <thead>
-                             <tr>
-                                 <th scope="col">Field</th>
-                                 <th scope="col">Value</th>
-                             </tr>
-                             </thead>
-                             <tbody>
-                             @for($i = 0; $i <=2; $i++)
-                             <tr>
-                                 <td>
-                                     <input type="text" name="customer_fields[{{ $i }}][field_key]" class="form-control">
-                                 </td>
-                                 <td>
-                                     <input type="text" name="customer_fields[{{ $i }}][field_value]" class="form-control">
-                                 </td>
-                             </tr>
-                             @endfor
-                             </tbody>
-                         </table>
-                     </div>
-
                  </div>
 
                 {{-- Seller Details --}}
@@ -133,7 +55,7 @@
 
                 </div>
             </div>
-
+            @endif
 
             {{--  Portion 3   --}}
             <div>
