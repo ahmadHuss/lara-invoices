@@ -32,7 +32,8 @@ class InvoicesController extends Controller
      */
     public function create()
     {
-        return view('invoices.create');
+        $customers = Customer::orderBy('id')->get();
+        return view('invoices.create', compact('customers'));
     }
 
 
@@ -43,25 +44,10 @@ class InvoicesController extends Controller
      */
     public function store(StoreInvoiceRequest $request): string
     {
-      // Get customer
-      $customer = Customer::create($request->customer);
-
-      // Additional fields optional stored inside the database
-        for ($i = 0; $i < count($request->customer_fields); $i++) {
-            // Array check whether a variable is set and is not NULL.
-            if (isset($request->customer_fields[$i]['field_key']) && isset($request->customer_fields[$i]['field_value'])) {
-                CustomersField::create([
-                    'customer_id' => $customer->id,
-                    'field_key' => $request->customer_fields[$i]['field_key'],
-                    'field_value' => $request->customer_fields[$i]['field_value']
-                ]);
-            }
-        }
-
 
       // Get Invoice
       // It will combine into an array and saved inside the database.
-      $invoice = Invoice::create($request->invoice + ['customer_id' => $customer->id]);
+      $invoice = Invoice::create($request->invoice);
 
         // Save invoices_item inside invoices_items table
        for ($i = 0; $i < count($request->product); $i++) {
