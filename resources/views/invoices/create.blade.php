@@ -75,17 +75,24 @@
                             <tr id="addr0">
                                 <th scope="row">1</th>
                                 <td>
-                                     {{--  We have enter the name value as an array because users can create can multiple rows of same
+                                     {{--  We have enter the name value as an array (quantity[]) because users can create can multiple rows of same
                                         fields, So when we save inside the database we store the multiple rows.
                                       --}}
-                                    <input type="text" name="product[]" class="form-control @error('product.0') is-invalid @enderror" placeholder="Enter Product Name">
+                                    <select name="product[]" class="form-select @error('product.0') is-invalid @enderror" data-select>
+                                        <option disabled @if(old('product.0') === null) selected @endif>Pick Product</option>
+                                        @foreach($products as $product)
+                                            <option value="{{ $product->id }}" @if($product->id === (int) old('product.0')) selected @endif data-price="{{ $product->price }}">
+                                                {{ $product->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </td>
                                 <td>
                                     <input type="text" name="quantity[]" class="form-control qty @error('quantity.0') is-invalid @enderror" placeholder="Enter Quantity">
                                 </td>
 
                                 <td>
-                                    <input type="text" name="price[]" class="form-control price @error('price.0') is-invalid @enderror" placeholder="Enter Unit Price">
+                                    <input type="text" name="price[]" class="form-control price @error('price.0') is-invalid @enderror" placeholder="Enter Unit Price" data-price-field disabled readonly>
                                 </td>
 
                                 <td>
@@ -157,6 +164,7 @@
             // Add another extra tr row deliberately
             $('#tab_logic').append('<tr id="addr' + (i + 1) + '"></tr>');
             i++;
+            select_box();
         });
 
         // When user clicks the #delete_row button
@@ -166,6 +174,7 @@
                 i--;
             }
             calc();
+            select_box();
         });
 
         $('#tab_logic tbody').on('keyup change', function () {
@@ -174,6 +183,8 @@
         $('#tax').on('keyup change', function () {
             calc_total();
         });
+
+        select_box();
     });
 
     function calc() {
@@ -202,6 +213,25 @@
         let tax_sum = (total / 100) * $('#tax').val();
         $('#tax_amount').val(tax_sum.toFixed(2));
         $('#total_amount').val((tax_sum + total).toFixed(2));
+    }
+
+    function select_box() {
+        // Get all select boxes
+        const $allSelects = $('[data-select]');
+        if ($allSelects && $allSelects.length > 0) {
+            $allSelects.each(function () {
+                // Attach change event to select menu
+                $(this).change(function ()  {
+                    // Get select menu as a jQuery object
+                    const $selectMenu = $(this);
+                    const price = $selectMenu.find('option:selected').data('price');
+                    const $priceInput = $selectMenu.closest('tr').find('td:eq(2) [data-price-field]');
+                    if ($priceInput) {
+                        $priceInput.val(price);
+                    }
+                }).change();  // Run on start
+            });
+        }
     }
 
 </script>
