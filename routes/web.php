@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\SignoutController;
 use App\Http\Controllers\Auth\SignupController;
 use App\Http\Controllers\Invoice\InvoicesController;
 use App\Http\Controllers\Customer\CustomerController;
+use App\Http\Controllers\Product\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,4 +39,7 @@ Route::middleware(['auth'])->group(function () {
 
     // Customer Resource
     Route::resource('customers', CustomerController::class);
+
+    // Products Resource
+    Route::resource('products', ProductController::class);
 });
