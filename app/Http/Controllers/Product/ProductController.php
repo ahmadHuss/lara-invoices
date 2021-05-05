@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\StoreProductRequest;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -15,6 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
+        $products = Product::all();
+        return view('products.index', compact('products'));
     }
 
     /**
@@ -24,6 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
+        return view('products.create');
     }
 
     /**
@@ -34,6 +38,8 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
+        Product::create($request->all());
+        return redirect()->route('products.index');
     }
 
     /**
