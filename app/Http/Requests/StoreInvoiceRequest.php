@@ -66,8 +66,8 @@ class StoreInvoiceRequest extends FormRequest
 
             // invoices_items
             'product.0' => 'required',
-            'quantity.0' => 'required',
-            'price.0' => 'required',
+            'quantity.0' => 'required|numeric',
+            'price.0' => 'required|numeric',
         ];
     }
 }

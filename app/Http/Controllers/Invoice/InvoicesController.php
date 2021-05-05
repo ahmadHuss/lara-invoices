@@ -8,6 +8,7 @@ use App\Models\Customer;
 use App\Models\CustomersField;
 use App\Models\Invoice;
 use App\Models\InvoicesItem;
+use App\Models\Product;
 use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 
@@ -33,7 +34,8 @@ class InvoicesController extends Controller
     public function create()
     {
         $customers = Customer::orderBy('id')->get();
-        return view('invoices.create', compact('customers'));
+        $products = Product::orderBy('id')->get();
+        return view('invoices.create', compact('customers','products'));
     }
 
 
