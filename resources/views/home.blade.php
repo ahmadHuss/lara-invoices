@@ -17,7 +17,7 @@
                             <th>Invoice Date</th>
                             <th>Invoice Number</th>
                             <th>Customer</th>
-                            <th>Total Amount</th>
+                            <th>Total Amount ({{ config('invoices.currency') }})</th>
                             <th></th>
                             <th></th>
                         </tr>
