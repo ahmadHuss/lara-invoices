@@ -19,7 +19,7 @@
 
 
                     <div class="mb-4">
-                        <label for="price">Price *:</label>
+                        <label for="price">Price ({{ config('invoices.currency') }}) *:</label>
                         <input type="text" name="price" class="form-control @error('price') is-invalid @enderror" id="price" value="{{ old('price') }}">
                         @error('price')
                         <div class="invalid-feedback">{{ $message }}</div>
