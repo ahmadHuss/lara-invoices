@@ -67,7 +67,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Product</th>
                             <th scope="col">Quantity</th>
-                            <th scope="col">Price</th>
+                            <th scope="col">Price ({{ config('invoices.currency') }})</th>
                             <th scope="col">Total</th>
                         </tr>
                         </thead>
@@ -114,7 +114,7 @@
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <tr>
-                            <th>Sub Total</th>
+                            <th>Sub Total ({{ config('invoices.currency') }})</th>
                             <td>
                                 <input type="text" class="form-control" placeholder="0.00" disabled readonly id="sub_total">
                             </td>
@@ -132,11 +132,11 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>Tax Amount</th>
+                            <th>Tax Amount ({{ config('invoices.currency') }})</th>
                             <td><input type="text" class="form-control" id="tax_amount" placeholder="0.00" disabled readonly></td>
                         </tr>
                         <tr>
-                            <th>Grand Total</th>
+                            <th>Grand Total ({{ config('invoices.currency') }})</th>
                             <td><input type="text" class="form-control" id="total_amount" placeholder="0.00" disabled readonly></td>
                         </tr>
                     </table>

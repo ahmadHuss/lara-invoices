@@ -77,8 +77,8 @@
                     <th>#</th>
                     <th>Product</th>
                     <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Total</th>
+                    <th>Price ({{ config('invoices.currency') }})</th>
+                    <th>Total ({{ config('invoices.currency') }})</th>
                 </tr>
                 {{--  Because of hasMany Relationship --}}
                 @foreach($invoice->invoices_items as $item)
@@ -100,7 +100,7 @@
     <div class="table-responsive mt-5">
         <table class="table table-bordered">
             <tr>
-                <th>Sub Total</th>
+                <th>Sub Total ({{ config('invoices.currency') }})</th>
                 <td>{{ number_format($invoice->total_amount, 2) }}</td>
             </tr>
             <tr>
@@ -108,11 +108,11 @@
                 <td>{{ $invoice->tax_percent }}%</td>
             </tr>
             <tr>
-                <th>Tax Amount</th>
+                <th>Tax Amount ({{ config('invoices.currency') }})</th>
                 <td>{{ number_format(($invoice->total_amount / 100) * $invoice->tax_amount, 2)}}</td>
             </tr>
             <tr>
-                <th>Grand Total</th>
+                <th>Grand Total ({{ config('invoices.currency') }})</th>
                 <td>{{ number_format((($invoice->total_amount / 100) * $invoice->tax_amount) + $invoice->total_amount, 2)}}</td>
             </tr>
         </table>
