@@ -30,7 +30,7 @@
                                     <td>{{ $customer->postcode }}</td>
                                     <td>{{ $customer->city }}</td>
                                     <td>{{ $customer->state }}</td>
-                                    <td>{{ $customer->country }}</td>
+                                    <td>{{ isset($customer->country->title) ? $customer->country->title : null }}</td>
                                     <td>{{ $customer->phone }}</td>
                                     <td>{{ $customer->email }}</td>
                                     {{-- We don't want to delete the customer whole database and
