@@ -5,11 +5,11 @@ namespace App\Http\Controllers\Invoice;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreInvoiceRequest;
 use App\Models\Customer;
-use App\Models\CustomersField;
 use App\Models\Invoice;
 use App\Models\InvoicesItem;
 use App\Models\Product;
 use Barryvdh\DomPDF\Facade as PDF;
+use Mpociot\VatCalculator\Facades\VatCalculator;
 use Illuminate\Http\Request;
 
 class InvoicesController extends Controller
@@ -35,7 +35,13 @@ class InvoicesController extends Controller
     {
         $customer = Customer::findOrFail($request->customer_id);
         $products = Product::orderBy('id')->get();
-        $tax = 20;
+
+        // Tax calculation
+        $tax = 0;
+        if (isset($customer->country->code)) {
+            $tax =  VatCalculator::getTaxRateForLocation($customer->country->code) * 100;
+        }
+
         return view('invoices.create', compact('customer','products', 'tax'));
     }
 
