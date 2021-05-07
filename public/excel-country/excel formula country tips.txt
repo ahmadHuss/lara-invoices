@@ -1,0 +1,11 @@
+https://www.iban.com/country-codes
+
+= represents formula and double quotes represent text & operator represents logic row() returns the row number
+="[ 'id' => " & ROW() - 1 & ","
+
+
+D2 is just a reference column for the same value
+="'title' => '"&D2&"',"
+
+E2 is just a reference column for the same value
+="'code' => '"&E2&"'],"
