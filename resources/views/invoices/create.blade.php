@@ -25,24 +25,15 @@
             </div>
 
             {{--  Portion 2   --}}
-            @if(count($customers) > 0)
             <div class="row mb-4">
                 {{-- Customer Details --}}
                  <div class="col">
                      <h4 class="mt-3">Customer Details</h4>
                      <div class="mb-4">
-                        <select class="form-select @error('invoice.customer_id') is-invalid @enderror" name="invoice[customer_id]">
-                            <option disabled @if(old('invoice.customer_id') === null) selected @endif>Choose a customer</option>
-                            @foreach($customers as $customer)
-                               <option value="{{ $customer->id }}" @if($customer->id === (int) old('invoice.customer_id')) selected @endif>
-                                   {{ $customer->name }}
-                               </option>
-                             @endforeach
-                         </select>
-                         @error('invoice.customer_id')
-                             <div class="invalid-feedback">{{ $message }}</div>
-                         @enderror
+                         <p class="fs-5 fw-bold">Customer Name: <span class="fw-normal">{{ $customer->name }}</span></p>
                      </div>
+                    {{-- Now to save customer_id in the database we have to create hidden input. --}}
+                     <input type="hidden" name="invoice.customer_id" value="{{ $customer->id }}"/>
                  </div>
 
                 {{-- Seller Details --}}
@@ -55,7 +46,6 @@
 
                 </div>
             </div>
-            @endif
 
             {{--  Portion 3   --}}
             <div>
@@ -123,7 +113,7 @@
                             <th>Tax</th>
                             <td>
                                 <div class="input-group">
-                                    <input type="text" name="invoice[tax_percent]" class="form-control @error('invoice.tax_percent') is-invalid @enderror" placeholder="0" value="{{ old('invoice.tax_percent') ? old('invoice.tax_percent') : '0' }}" id="tax">
+                                    <input type="text" name="invoice[tax_percent]" class="form-control @error('invoice.tax_percent') is-invalid @enderror" placeholder="0" value="{{ old('invoice.tax_percent') ? old('invoice.tax_percent') : $tax }}" id="tax">
                                     <span class="input-group-text">%</span>
                                 </div>
                                 @error('invoice.tax_percent')
