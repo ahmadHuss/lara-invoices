@@ -16,7 +16,7 @@ class AddCountryIdToCustomersTable extends Migration
         Schema::table('customers', function (Blueprint $table) {
 
             // First drop column `country` make sure also change fillable in the Customer Model
-           // $table->dropColumn('country');
+             $table->dropColumn('country');
 
             // Foreign key Add after `address` column
             $table->unsignedBigInteger('country_id')->after('address')->nullable();
