@@ -31,11 +31,12 @@ class InvoicesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $customers = Customer::orderBy('id')->get();
+        $customer = Customer::findOrFail($request->customer_id);
         $products = Product::orderBy('id')->get();
-        return view('invoices.create', compact('customers','products'));
+        $tax = 20;
+        return view('invoices.create', compact('customer','products', 'tax'));
     }
 
 
