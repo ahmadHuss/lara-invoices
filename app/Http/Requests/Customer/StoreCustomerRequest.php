@@ -26,7 +26,7 @@ class StoreCustomerRequest extends FormRequest
         return [
             'name' => 'required',
             'address' => 'required',
-            'country' => 'required',
+            'country_id' => 'required',
             'city' => 'required',
         ];
     }

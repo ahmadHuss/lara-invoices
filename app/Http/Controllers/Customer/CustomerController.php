@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Customer\StoreCustomerRequest;
+use App\Models\Country;
 use App\Models\Customer;
 use App\Models\CustomersField;
 use Illuminate\Http\Request;
@@ -27,7 +28,8 @@ class CustomerController extends Controller
      */
     public function create()
     {
-      return view('customers.create');
+      $countries = Country::all();
+      return view('customers.create', compact('countries'));
     }
 
     /**

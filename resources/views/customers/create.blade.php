@@ -29,9 +29,16 @@
 
                     <div class="mb-4">
                         <label for="country">Country *:</label>
-                        <input type="text" name="country" class="form-control @error('country') is-invalid @enderror" id="country" value="{{ old('country') }}">
+                        <select name="country_id" class="form-select @error('country_id') is-invalid @enderror" id="country">
+                            <option disabled @if(old('country_id') === null) selected @endif>Choose your Country</option>
+                            @foreach($countries as $country)
+                                <option value="{{ $country->id }}" @if($country->id === (int) old('country')) selected @endif>
+                                    {{ $country->title }} ({{ $country->code }})
+                                </option>
+                            @endforeach
+                        </select>
                         @error('country')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
